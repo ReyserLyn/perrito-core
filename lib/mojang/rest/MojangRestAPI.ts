@@ -59,7 +59,7 @@ export class MojangRestAPI {
 
     private static readonly TIMEOUT = 2500
 
-    public static readonly AUTH_ENDPOINT = 'https://authserver.mojang.com'
+    public static readonly AUTH_ENDPOINT = 'https://auth.zelthoriaismp.cloud/api/yggdrasil'
     public static readonly STATUS_ENDPOINT = 'https://raw.githubusercontent.com/AventiumSoftworks/helios-status-page/master/history/summary.json'
 
     private static authClient = got.extend({
@@ -83,7 +83,7 @@ export class MojangRestAPI {
     public static getDefaultStatuses(): MojangStatus[] {
         return [
             {
-                service: 'mojang-multiplayer-session-service',
+                service: 'hasta-yggdrasil-multiplayer-session-service',
                 status: MojangStatusColor.GREY,
                 name: 'Multiplayer Session Service',
                 essential: true
@@ -273,7 +273,7 @@ export class MojangRestAPI {
                 json.clientToken = clientToken
             }
 
-            const res = await MojangRestAPI.authClient.post<Session>('authenticate', { json, responseType: 'json' })
+            const res = await MojangRestAPI.authClient.post<Session>('authserver/authenticate', { json, method: 'POST', headers: { 'Content-Type': 'application/json' }, responseType: 'json' })
             MojangRestAPI.expectSpecificSuccess('Mojang Authenticate', 200, res.statusCode)
             return {
                 data: res.body,
@@ -300,11 +300,11 @@ export class MojangRestAPI {
         try {
 
             const json = {
-                accessToken,
-                clientToken
+                'accessToken': accessToken,
+                'clientToken': clientToken
             }
 
-            const res = await MojangRestAPI.authClient.post('validate', { json })
+            const res = await MojangRestAPI.authClient.post('authserver/validate', { headers: { method: 'POST', 'Content-Type': 'application/json' }, json })
             MojangRestAPI.expectSpecificSuccess('Mojang Validate', 204, res.statusCode)
 
             return {
@@ -338,11 +338,11 @@ export class MojangRestAPI {
         try {
 
             const json = {
-                accessToken,
-                clientToken
+                'accessToken': accessToken,
+                'clientToken': clientToken
             }
 
-            const res = await MojangRestAPI.authClient.post('invalidate', { json })
+            const res = await MojangRestAPI.authClient.post('authserver/invalidate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, json })
             MojangRestAPI.expectSpecificSuccess('Mojang Invalidate', 204, res.statusCode)
 
             return {
@@ -377,7 +377,7 @@ export class MojangRestAPI {
                 requestUser
             }
 
-            const res = await MojangRestAPI.authClient.post<Session>('refresh', { json, responseType: 'json' })
+            const res = await MojangRestAPI.authClient.post<Session>('authserver/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, json, responseType: 'json' })
             MojangRestAPI.expectSpecificSuccess('Mojang Refresh', 200, res.statusCode)
 
             return {
