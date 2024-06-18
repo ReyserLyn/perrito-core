@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\lib",
+    "\\lib\\mojang",
+    "\\lib\\mojang\\rest",
+    "\\test",
+    "\\test\\mojang",
+    "\\test\\mojang\\rest"
+  ],
+  "SelectedNode": "\\test\\mojang\\rest\\MojangRestAPITest.ts",
+  "PreviewInSolutionExplorer": false
+}
