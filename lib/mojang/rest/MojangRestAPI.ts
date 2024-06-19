@@ -300,8 +300,8 @@ export class MojangRestAPI {
         try {
 
             const json = {
-                'accessToken': accessToken,
-                'clientToken': clientToken
+                 accessToken,
+                 clientToken
             }
 
             const res = await MojangRestAPI.authClient.post('authserver/validate', { headers: { method: 'POST', 'Content-Type': 'application/json' }, json })

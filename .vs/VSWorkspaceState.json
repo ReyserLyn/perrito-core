@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\.github",
+    "\\.github\\workflows",
     "\\lib",
     "\\lib\\mojang",
     "\\lib\\mojang\\rest",
@@ -9,6 +10,6 @@
     "\\test\\mojang",
     "\\test\\mojang\\rest"
   ],
-  "SelectedNode": "\\test\\mojang\\rest\\MojangRestAPITest.ts",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
