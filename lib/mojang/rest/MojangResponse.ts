@@ -17,7 +17,8 @@ export enum MojangErrorCode {
     ERROR_GONE,
     ERROR_UNREACHABLE,
     ERROR_NOT_PAID,                 // Not automatically detected, response is 200 with a certain body.
-    UNKNOWN
+    UNKNOWN,
+    ERROR_INVALID_USER
 }
 
 export interface MojangResponse<T> extends RestResponse<T> {
@@ -58,6 +59,8 @@ export function decipherErrorCode(body: MojangErrorBody): MojangErrorCode {
             return MojangErrorCode.ERROR_INVALID_TOKEN
         } else if(body.errorMessage === 'Forbidden') {
             return MojangErrorCode.ERROR_CREDENTIALS_MISSING
+        } else if(body.errorMessage === 'User not found.') {
+            return MojangErrorCode.ERROR_INVALID_USER
         }
 
     } else if(body.error === 'IllegalArgumentException') {
