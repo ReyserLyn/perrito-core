@@ -1,7 +1,7 @@
 {
   "name": "hasta-core",
-  "version": "2.5.1",
-  "description": "A library containing core mechanisms for Helios Launcher",
+  "version": "2.6.1",
+  "description": "A library containing core mechanisms for hasta Launcher",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist",
