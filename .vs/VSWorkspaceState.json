@@ -1,15 +1,18 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.github",
-    "\\.github\\workflows",
     "\\lib",
-    "\\lib\\mojang",
-    "\\lib\\mojang\\rest",
+    "\\lib\\common",
+    "\\lib\\common\\rest",
     "\\test",
+    "\\test\\dl",
+    "\\test\\dl\\files",
+    "\\test\\dl\\files\\assets",
+    "\\test\\dl\\files\\assets\\objects",
+    "\\test\\java",
     "\\test\\mojang",
+    "\\test\\mojang\\net",
     "\\test\\mojang\\rest"
   ],
-  "SelectedNode": "\\package-lock.json",
   "PreviewInSolutionExplorer": false
 }

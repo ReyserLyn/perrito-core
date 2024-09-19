@@ -59,7 +59,7 @@ export class MojangRestAPI {
 
     private static readonly TIMEOUT = 2500
 
-    public static readonly AUTH_ENDPOINT = 'https://auth.zelthoriaismp.cloud/api/yggdrasil'
+    public static readonly AUTH_ENDPOINT = 'https://auth.hastastudios.com.br/api/yggdrasil'
     public static readonly STATUS_ENDPOINT = 'https://raw.githubusercontent.com/AventiumSoftworks/helios-status-page/master/history/summary.json'
 
     private static authClient = got.extend({
