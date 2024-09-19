@@ -1,6 +1,6 @@
 {
   "name": "hasta-core",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "A library containing core mechanisms for hasta Launcher",
   "main": "dist/index.js",
   "scripts": {
