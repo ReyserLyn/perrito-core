@@ -4,13 +4,13 @@ import { pathExists, readdir } from 'fs-extra'
 import got from 'got'
 import { Architecture, JdkDistribution, Platform } from 'helios-distribution-types'
 import { dirname, join } from 'path'
+import semver from 'semver'
 import { promisify } from 'util'
+import Registry from 'winreg'
+import { extractTarGz, extractZip } from '../common/util/FileUtils'
+import { Asset, HashAlgo } from '../dl'
 import { LauncherJson } from '../model/mojang/LauncherJson'
 import { LoggerUtil } from '../util/LoggerUtil'
-import Registry from 'winreg'
-import semver from 'semver'
-import { Asset, HashAlgo } from '../dl'
-import { extractTarGz, extractZip } from '../common/util/FileUtils'
 
 const log = LoggerUtil.getLogger('JavaGuard')
 
@@ -433,8 +433,8 @@ export function rankApplicableJvms(details: JvmDetails[]): void {
                 if(a.semver.patch === b.semver.patch){
 
                     // Same version, give priority to JRE.
-                    if(a.path.toLowerCase().indexOf('jdk') > -1){
-                        return b.path.toLowerCase().indexOf('jdk') > -1 ? 0 : 1
+                    if(a.path.toLowerCase().includes('jdk')){
+                        return b.path.toLowerCase().includes('jdk') ? 0 : 1
                     } else {
                         return -1
                     }
