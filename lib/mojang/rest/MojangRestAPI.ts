@@ -1,7 +1,7 @@
-import { LoggerUtil } from '../../util/LoggerUtil'
-import got, { RequestError, HTTPError } from 'got'
-import { MojangResponse, MojangErrorCode, decipherErrorCode, isInternalError, MojangErrorBody } from './MojangResponse'
+import got, { HTTPError, RequestError } from 'got'
 import { RestResponseStatus, handleGotError } from '../../common/rest/RestResponse'
+import { LoggerUtil } from '../../util/LoggerUtil'
+import { MojangErrorBody, MojangErrorCode, MojangResponse, decipherErrorCode, isInternalError } from './MojangResponse'
 
 export interface Agent {
     name: 'Minecraft'
@@ -59,7 +59,8 @@ export class MojangRestAPI {
 
     private static readonly TIMEOUT = 2500
 
-    public static readonly AUTH_ENDPOINT = 'https://auth.hastastudios.com.br/api/yggdrasil'
+    // public static readonly AUTH_ENDPOINT = 'https://auth.hastastudios.com.br/api/yggdrasil'
+    public static readonly AUTH_ENDPOINT = 'https://perrito-auth.reyserlyn.com/api'
     public static readonly STATUS_ENDPOINT = 'https://raw.githubusercontent.com/AventiumSoftworks/helios-status-page/master/history/summary.json'
 
     private static authClient = got.extend({
@@ -83,7 +84,7 @@ export class MojangRestAPI {
     public static getDefaultStatuses(): MojangStatus[] {
         return [
             {
-                service: 'hasta-yggdrasil-multiplayer-session-service',
+                service: 'perrito-multiplayer-session-service',
                 status: MojangStatusColor.GREY,
                 name: 'Multiplayer Session Service',
                 essential: true
@@ -300,8 +301,8 @@ export class MojangRestAPI {
         try {
 
             const json = {
-                 accessToken,
-                 clientToken
+                accessToken,
+                clientToken
             }
 
             const res = await MojangRestAPI.authClient.post('authserver/validate', { headers: { method: 'POST', 'Content-Type': 'application/json' }, json })
